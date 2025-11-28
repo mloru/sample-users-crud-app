@@ -1,6 +1,6 @@
-# Applicazione CRUD con Laravel
+# Applicazione CRUD con Laravel e VueJS
 
-Semplice CRUD realizzato con Laravel, che permette di creare, leggere, aggiornare e cancellare utenti.
+Semplice CRUD realizzato con Laravel e VueJS, che permette di creare, leggere, aggiornare e cancellare utenti.
 
 ## Avvio del progetto in locale
 
