@@ -15,7 +15,7 @@ composer install
 Poi digitare
 
 ```bash
-vendor/bin/sail up
+vendor/bin/sail up -d
 ```
 
 per avviare il progetto.<br>
