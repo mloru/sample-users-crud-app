@@ -18,7 +18,27 @@ Poi digitare
 vendor/bin/sail up
 ```
 
-per avviare il progetto. L'applicazione sarà disponibile all'indirizzo http://localhost
+per avviare il progetto.<br>
+
+Successivamente, installare le dipendenze frontend con 
+
+```bash
+npm install
+```
+
+e buildare il frontend con
+
+```bash
+npm run build
+```
+
+o
+
+```bash
+npm run dev
+```
+
+L'applicazione sarà disponibile all'indirizzo http://localhost<br>
 
 ## Test
 
