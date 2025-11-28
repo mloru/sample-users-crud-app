@@ -4,7 +4,8 @@ Semplice CRUD realizzato con Laravel e VueJS, che permette di creare, leggere, a
 
 ## Avvio del progetto in locale
 
-Per lo sviluppo locale è necessario che la macchina sia equipaggiata con Composer e Docker.<br>
+Per lo sviluppo locale è necessario che la macchina sia equipaggiata con Composer, Docker, NodeJS e npm.<br>
+
 Installare le dipendenze backend con
 
 ```bash
