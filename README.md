@@ -4,9 +4,14 @@ Semplice CRUD realizzato con Laravel e VueJS, che permette di creare, leggere, a
 
 ## Avvio del progetto in locale
 
-Per lo sviluppo locale, il progetto fa uso di Sail, perciò è necessario installare Docker.
+Per lo sviluppo locale è necessario che la macchina sia equipaggiata con Composer e Docker.<br>
+Installare le dipendenze backend con
 
-Una volta installate le dipendenze con composer, digitare:
+```bash
+composer install
+```
+
+Poi digitare
 
 ```bash
 vendor/bin/sail up
