@@ -5,39 +5,54 @@ Semplice CRUD realizzato con Laravel e VueJS, che permette di creare, leggere, a
 ## Avvio del progetto in locale
 
 Per lo sviluppo locale è necessario che la macchina sia equipaggiata con Composer, Docker, NodeJS e npm.<br>
+Lanciare il comando:
 
-Fare una copia del file `.env.example` nominandola `.env`, successivamente installare le dipendenze backend con
+```bash
+chmod +x tools/build-local-env.sh && ./tools/build-local-env.sh
+```
+
+oppure seguire gli step illustrati di seguito:
+
+* Fare una copia del file `.env.example` nominandola `.env`
+
+* installare le dipendenze backend con:
 
 ```bash
 composer install
 ```
 
-Poi digitare
+* digitare:
 
 ```bash
 vendor/bin/sail up -d
 ```
 
-per avviare il progetto. Successivamente, generare la chiave applicazione con
+* generare la chiave applicazione con:
 
 
 ```bash
 vendor/bin/sail artisan key:generate
 ```
 
-installare le dipendenze frontend con 
+* migrare il database con:
+
+```bash
+vendor/bin/sail artisan migrate
+```
+
+* installare le dipendenze frontend con:
 
 ```bash
 npm install
 ```
 
-e buildare il frontend con
+buildare il frontend con:
 
 ```bash
 npm run build
 ```
 
-o
+oppure:
 
 ```bash
 npm run dev
