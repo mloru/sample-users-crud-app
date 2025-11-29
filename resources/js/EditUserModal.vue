@@ -14,10 +14,16 @@
             <div class="form-group">
                 <label for="name">Nome:</label>
                 <input type="text" id="name" v-model="editedUser.name" required @keyup.enter="editedUser.id ? updateUser() : insertNewUser()">
+                <div class="error-message"
+                     v-text="errors.name">
+                </div>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" v-model="editedUser.email" required @keyup.enter="editedUser.id ? updateUser() : insertNewUser()">
+                <div class="error-message"
+                     v-text="errors.email">
+                </div>
             </div>
             <div class="form-group">
                 <label for="password"
@@ -29,6 +35,9 @@
                        v-model="editedUser.password"
                        @keyup.enter="editedUser.id ? updateUser() : insertNewUser()"
                 >
+                <div class="error-message"
+                     v-text="errors.password">
+                </div>
             </div>
             <div class="form-group">
                 <label for="password_confirmation"
@@ -41,6 +50,9 @@
                        :required="editedUser.password.toString().length > 0"
                        @keyup.enter="editedUser.id ? updateUser() : insertNewUser()"
                 >
+                <div class="error-message"
+                     v-text="errors.password_confirmation">
+                </div>
             </div>
             <div class="form-actions">
                 <button type="button"
@@ -65,6 +77,12 @@
             showEditModal: {},
             updateUser: {},
             insertNewUser: {},
+            errors: {
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: '',
+            },
         }
     }
 </script>
@@ -126,6 +144,13 @@
         width: 100%;
         padding: 8px;
         border: 1px solid #ddd;
+    }
+
+    .error-message {
+        color: #d32f2f;
+        font-size: 0.875rem;
+        margin-top: 4px;
+        min-height: 1.25rem;
     }
 
     .form-actions {

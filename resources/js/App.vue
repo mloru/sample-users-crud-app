@@ -4,6 +4,7 @@
                    :show-edit-modal="showEditModal"
                    :update-user="updateUser"
                    :insert-new-user="insertNewUser"
+                   :errors="errors"
     />
 
     <div class="container">
@@ -133,6 +134,12 @@
                     email: '',
                     password: '',
                     password_confirmation: ''
+                },
+                errors: {
+                    name: '',
+                    email: '',
+                    password: '',
+                    password_confirmation: '',
                 }
             };
         },
@@ -200,8 +207,15 @@
                     this.closeEditModal();
                     await this.readUsersList();
                 } catch (error) {
-                    console.error(`Errore aggiornamento utente: `, error);
-                    alert(`Si è verificato un errore durante l'aggiornamento dell'utente.`);
+                    if (error.response && error.response.status === 422) {
+                        this.errors = {};
+
+                        Object.entries(error.response.data)
+                            .forEach(([fieldName, errorMessages]) => { this.errors[fieldName] = errorMessages.join(' '); });
+                    } else {
+                        console.error('Errore aggiornamento utente:', error);
+                        alert('Errore aggiornamento utente');
+                    }
                 }
             },
             async insertNewUser() {
@@ -219,8 +233,15 @@
                     this.closeEditModal();
                     await this.readUsersList();
                 } catch (error) {
-                    console.error(`Errore creazione utente: `, error);
-                    alert(`Si è verificato un errore durante la creazione dell'utente.`);
+                    if (error.response && error.response.status === 422) {
+                        this.errors = {};
+
+                        Object.entries(error.response.data)
+                            .forEach(([fieldName, errorMessages]) => { this.errors[fieldName] = errorMessages.join(' '); });
+                    } else {
+                        console.error('Errore creazione utente:', error);
+                        alert('Errore aggiornamento utente');
+                    }
                 }
             }
         }
