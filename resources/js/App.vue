@@ -187,7 +187,59 @@
                     password_confirmation: ''
                 };
             },
+            validateUserData() {
+                this.errors = {};
+
+                if(!this.editedUser.name) {
+                    this.errors.name = `Inserire il nome dell'utente`;
+                } else {
+                    if (this.editedUser.name.length < 1) {
+                        this.errors.name = `Il nome dell'utente deve contenere almeno un carattere`;
+                    } else if (this.editedUser.name.length > 255) {
+                        this.errors.name = `Il nome dell'utente deve contenere al massimo 255 caratteri`;
+                    }
+                }
+
+                if(!this.editedUser.email) {
+                    this.errors.email = `Inserire l'indirizzo email dell'utente`;
+                } else if (!this.validateEmail(this.editedUser.email)) {
+                    this.errors.email = `Inserire un indirizzo email valido`;
+                } else {
+                    if (this.editedUser.email.length > 255) {
+                        this.errors.email = `L'indirizzo email dell'utente deve contenere al massimo 255 caratteri`;
+                    }
+                }
+
+                if (!this.editedUser.id && !this.editedUser.password) {
+                    this.errors.password = `Inserire la password dell'utente`;
+                } else {
+                    if (this.editedUser.password.length < 8) {
+                        this.errors.password = `La password dell'utente deve contenere almeno 8 caratteri`;
+                    } else if (this.editedUser.password.length > 255) {
+                        this.errors.password = `La password dell'utente deve contenere al massimo 255 caratteri`;
+                    }
+                }
+
+                if(this.editedUser.password !== this.editedUser.password_confirmation) {
+                    this.errors.password_confirmation = `Le password non coincidono`;
+                }
+
+                if (Object.keys(this.errors).length > 0) {
+                    return false;
+                }
+            },
+            validateEmail(email) {
+                const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                return re.test(String(email).toLowerCase());
+            },
             async updateUser() {
+                this.errors = {};
+
+                if (!this.validateUserData()) {
+                    return;
+                }
+
                 let payload = {
                     name: this.editedUser.name,
                     email: this.editedUser.email
@@ -219,6 +271,12 @@
                 }
             },
             async insertNewUser() {
+                this.errors = {};
+
+                if (!this.validateUserData()) {
+                    return;
+                }
+
                 try {
                     await axios.post(
                         `/api/users`,
