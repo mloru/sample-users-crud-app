@@ -41,7 +41,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             return new Response(
                 $validator->messages(),
-                HttpFoundationResponse::HTTP_BAD_REQUEST
+                HttpFoundationResponse::HTTP_UNPROCESSABLE_ENTITY
             );
         }
 
@@ -94,7 +94,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             return new Response(
                 $validator->messages(),
-                HttpFoundationResponse::HTTP_BAD_REQUEST
+                HttpFoundationResponse::HTTP_UNPROCESSABLE_ENTITY
             );
         }
 
