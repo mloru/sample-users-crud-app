@@ -18,13 +18,18 @@
                 <button type="button" @click="closeEditModal">
                     Annulla
                 </button>
-                <button type="button" @click="updateUser" class="confirm">
+                <button type="button" @click="updateUser" class="btn-confirm">
                     Salva
                 </button>
             </div>
         </div>
     </div>
-    <div v-if="users.length">
+
+    <div class="container">
+        <div class="btn-container">
+            <button class="btn-confirm">Crea utente</button>
+        </div>
+        <div v-if="users.length">
         <table>
             <thead>
                 <tr>
@@ -56,9 +61,10 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div v-else>
-        Nessun utente presente sul database
+        </div>
+        <div v-else>
+            Nessun utente presente sul database
+        </div>
     </div>
 </template>
 
@@ -134,10 +140,24 @@
         border: 1px solid #ddd;
     }
 
-    .form-actions button.confirm {
+    .btn-confirm {
         background: #04AA6D;
         color: white;
         border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .btn-container {
+        margin-bottom: 20px;
     }
 
     th {
