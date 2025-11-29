@@ -33,7 +33,7 @@ class UserController extends Controller
             $request->all(),
             [
                 'name' => 'required|min:1|max:' . Builder::$defaultStringLength,
-                'email' => 'required|email|unique:users|min:6|max:' . Builder::$defaultStringLength,
+                'email' => 'required|email|unique:users|max:' . Builder::$defaultStringLength,
                 'password' => 'required|confirmed|min:8|max:' . Builder::$defaultStringLength,
             ]
         );
