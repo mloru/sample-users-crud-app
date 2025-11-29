@@ -1,29 +1,9 @@
 <template>
-    <div v-if="showEditModal" class="modal">
-        <div class="modal-content">
-            <span class="close" @click="closeEditModal">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                </svg>
-            </span>
-            <div class="form-group">
-                <label for="name">Nome:</label>
-                <input type="text" id="name" v-model="editedUser.name" required @keyup.enter="updateUser">
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" v-model="editedUser.email" required @keyup.enter="updateUser">
-            </div>
-            <div class="form-actions">
-                <button type="button" @click="updateUser" class="btn-confirm">
-                    Salva
-                </button>
-                <button type="button" @click="closeEditModal">
-                    Annulla
-                </button>
-            </div>
-        </div>
-    </div>
+    <EditUserModal :close-edit-modal="closeEditModal"
+                   :edited-user="editedUser"
+                   :show-edit-modal="showEditModal"
+                  :update-user="updateUser"
+    />
 
     <div class="container">
         <div class="btn-container">
@@ -88,35 +68,6 @@
         background-color: #ddd;
     }
 
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal-content {
-        background: white;
-        padding: 20px;
-        border-radius: 4px;
-        width: 90%;
-        max-width: 500px;
-    }
-
-    .close {
-        float: right;
-        cursor: pointer;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
     .form-group label {
         display: block;
         margin-bottom: 5px;
@@ -126,11 +77,6 @@
         width: 100%;
         padding: 8px;
         border: 1px solid #ddd;
-    }
-
-    .form-actions {
-        margin-top: 20px;
-        text-align: right;
     }
 
     .form-actions button {
@@ -170,7 +116,12 @@
 </style>
 
 <script>
+    import EditUserModal from "./EditUserModal.vue";
+
     export default {
+        components: {
+            EditUserModal
+        },
         data() {
             return {
                 users: [],
