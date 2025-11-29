@@ -55,14 +55,14 @@
                 </div>
             </div>
             <div class="form-actions">
+                <button type="button" @click="closeEditModal">
+                    Annulla
+                </button>
                 <button type="button"
                         @click="editedUser.id ? updateUser() : insertNewUser()"
                         class="btn-confirm"
                         v-text="editedUser.id ? 'Aggiorna' : 'Crea'"
                 >
-                </button>
-                <button type="button" @click="closeEditModal">
-                    Annulla
                 </button>
             </div>
         </div>
