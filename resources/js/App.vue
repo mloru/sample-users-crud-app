@@ -176,11 +176,11 @@
                                 user => user.id === id
                             );
 
-                if (!confirm('Eliminare l\'utente ' + user.name + '?')) {
+                if (!confirm(`Eliminare l'utente ${user.name}?`)) {
                     return;
                 }
 
-                await axios.delete('/api/users/' + id);
+                await axios.delete(`/api/users/${id}`);
                 await this.readUsersList();
             },
             openEditModal(user) {
