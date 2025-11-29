@@ -86,7 +86,7 @@ class UserController extends Controller
             $request->all(),
             [
                 'name' => 'nullable|max:' . Builder::$defaultStringLength,
-                'email' => 'nullable|email|unique:users|max:' . Builder::$defaultStringLength,
+                'email' => 'nullable|email|unique:users,email,' . $id . '|max:' . Builder::$defaultStringLength,
                 'password' => 'nullable|min:8|confirmed|max:' . Builder::$defaultStringLength,
             ]
         );
