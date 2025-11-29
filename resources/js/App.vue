@@ -15,11 +15,11 @@
                 <input type="email" id="email" v-model="editedUser.email" required @keyup.enter="updateUser">
             </div>
             <div class="form-actions">
-                <button type="button" @click="closeEditModal">
-                    Annulla
-                </button>
                 <button type="button" @click="updateUser" class="btn-confirm">
                     Salva
+                </button>
+                <button type="button" @click="closeEditModal">
+                    Annulla
                 </button>
             </div>
         </div>
