@@ -2,12 +2,13 @@
     <EditUserModal :close-edit-modal="closeEditModal"
                    :edited-user="editedUser"
                    :show-edit-modal="showEditModal"
-                  :update-user="updateUser"
+                   :update-user="updateUser"
+                   :insert-new-user="insertNewUser"
     />
 
     <div class="container">
         <div class="btn-container">
-            <button class="btn-confirm">Crea utente</button>
+            <button @click="editNewUser" class="btn-confirm">Crea utente</button>
         </div>
         <div v-if="users.length">
         <table>
@@ -27,7 +28,7 @@
                     <td>{{ new Date(user.created_at).toLocaleString('it-IT') }}</td>
                     <td>{{ new Date(user.updated_at).toLocaleString('it-IT') }}</td>
                     <td>
-                        <button @click="openEditModal(user)">
+                        <button @click="editExistingUser(user)">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                             </svg>
@@ -143,6 +144,9 @@
                 const response = await axios.get('/api/users');
                 this.users = response.data;
             },
+            editNewUser() {
+                this.showEditModal = true;
+            },
             async deleteUser(id) {
                 let user = this.users
                             .find(
@@ -156,7 +160,7 @@
                 await axios.delete(`/api/users/${id}`);
                 await this.readUsersList();
             },
-            openEditModal(user) {
+            editExistingUser(user) {
                 this.editedUser.id = user.id;
                 this.editedUser.name = user.name;
                 this.editedUser.email = user.email;
@@ -165,11 +169,15 @@
             },
             closeEditModal() {
                 this.showEditModal = false;
-
+                this.clearEditModal();
+            },
+            clearEditModal() {
                 this.editedUser = {
                     id: null,
                     name: '',
-                    email: ''
+                    email: '',
+                    password: '',
+                    password_confirmation: ''
                 };
             },
             async updateUser() {
@@ -194,6 +202,25 @@
                 } catch (error) {
                     console.error(`Errore aggiornamento utente: `, error);
                     alert(`Si è verificato un errore durante l'aggiornamento dell'utente.`);
+                }
+            },
+            async insertNewUser() {
+                try {
+                    await axios.post(
+                        `/api/users`,
+                        {
+                            name: this.editedUser.name,
+                            email: this.editedUser.email,
+                            password: this.editedUser.password,
+                            password_confirmation: this.editedUser.password_confirmation
+                        }
+                    );
+
+                    this.closeEditModal();
+                    await this.readUsersList();
+                } catch (error) {
+                    console.error(`Errore creazione utente: `, error);
+                    alert(`Si è verificato un errore durante la creazione dell'utente.`);
                 }
             }
         }

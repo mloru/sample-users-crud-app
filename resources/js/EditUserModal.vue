@@ -13,11 +13,11 @@
             </span>
             <div class="form-group">
                 <label for="name">Nome:</label>
-                <input type="text" id="name" v-model="editedUser.name" required @keyup.enter="updateUser">
+                <input type="text" id="name" v-model="editedUser.name" required @keyup.enter="editedUser.id ? updateUser() : insertNewUser()">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" v-model="editedUser.email" required @keyup.enter="updateUser">
+                <input type="email" id="email" v-model="editedUser.email" required @keyup.enter="editedUser.id ? updateUser() : insertNewUser()">
             </div>
             <div class="form-group">
                 <label for="password">Password (opzionale):</label>
@@ -37,8 +37,11 @@
                 >
             </div>
             <div class="form-actions">
-                <button type="button" @click="updateUser" class="btn-confirm">
-                    Salva
+                <button type="button"
+                        @click="editedUser.id ? updateUser() : insertNewUser()"
+                        class="btn-confirm"
+                        v-text="editedUser.id ? 'Aggiorna' : 'Crea'"
+                >
                 </button>
                 <button type="button" @click="closeEditModal">
                     Annulla
@@ -54,7 +57,8 @@
             closeEditModal: {},
             editedUser: {},
             showEditModal: {},
-            updateUser: {}
+            updateUser: {},
+            insertNewUser: {},
         }
     }
 </script>
