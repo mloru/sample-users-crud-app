@@ -19,6 +19,23 @@
                 <label for="email">Email:</label>
                 <input type="email" id="email" v-model="editedUser.email" required @keyup.enter="updateUser">
             </div>
+            <div class="form-group">
+                <label for="password">Password (opzionale):</label>
+                <input type="password"
+                       id="password"
+                       v-model="editedUser.password"
+                       @keyup.enter="editedUser.id ? updateUser() : insertNewUser()"
+                >
+            </div>
+            <div class="form-group">
+                <label for="password_confirmation">Conferma password:</label>
+                <input type="password"
+                       id="password_confirmation"
+                       v-model="editedUser.password_confirmation"
+                       :required="editedUser.password.toString().length > 0"
+                       @keyup.enter="editedUser.id ? updateUser() : insertNewUser()"
+                >
+            </div>
             <div class="form-actions">
                 <button type="button" @click="updateUser" class="btn-confirm">
                     Salva

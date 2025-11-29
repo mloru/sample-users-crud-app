@@ -129,7 +129,9 @@
                 editedUser: {
                     id: null,
                     name: '',
-                    email: ''
+                    email: '',
+                    password: '',
+                    password_confirmation: ''
                 }
             };
         },
@@ -171,13 +173,20 @@
                 };
             },
             async updateUser() {
+                let payload = {
+                    name: this.editedUser.name,
+                    email: this.editedUser.email
+                }
+
+                if (this.editedUser.password) {
+                    payload.password = this.editedUser.password;
+                    payload.password_confirmation = this.editedUser.password_confirmation;
+                }
+
                 try {
                     await axios.patch(
                         `/api/users/${this.editedUser.id}`,
-                        {
-                            name: this.editedUser.name,
-                            email: this.editedUser.email
-                        }
+                        payload
                     );
 
                     this.closeEditModal();
