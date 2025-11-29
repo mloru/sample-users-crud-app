@@ -20,7 +20,10 @@
                 <input type="email" id="email" v-model="editedUser.email" required @keyup.enter="editedUser.id ? updateUser() : insertNewUser()">
             </div>
             <div class="form-group">
-                <label for="password">Password (opzionale):</label>
+                <label for="password"
+                       v-text="editedUser.id ? 'Password (lasciare vuoto per non modificare):' : 'Password'"
+                >
+                </label>
                 <input type="password"
                        id="password"
                        v-model="editedUser.password"
@@ -28,7 +31,10 @@
                 >
             </div>
             <div class="form-group">
-                <label for="password_confirmation">Conferma password:</label>
+                <label for="password_confirmation"
+                       v-text="editedUser.id ? 'Conferma password (lasciare vuoto per non modificare):' : 'Conferma password'"
+                >
+                </label>
                 <input type="password"
                        id="password_confirmation"
                        v-model="editedUser.password_confirmation"
