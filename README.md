@@ -4,7 +4,7 @@ Semplice CRUD realizzato con Laravel e VueJS, che permette di creare, leggere, a
 
 ## Avvio del progetto in locale
 
-Per lo sviluppo locale è necessario che la macchina sia equipaggiata con Composer, Docker, NodeJS e npm.<br>
+Per lo sviluppo locale è necessario che la macchina sia equipaggiata con Composer, Docker e npm.
 Lanciare il comando:
 
 ```bash
@@ -13,12 +13,7 @@ chmod +x tools/build-local-env.sh && ./tools/build-local-env.sh
 
 oppure seguire gli step illustrati di seguito:
 
-* copiare il file `.env.example` in `.env`:
-
-```bash
-cp .env.example .env
-```
-
+* Fare una copia del file `.env.example` nominandola `.env`
 * installare le dipendenze backend con:
 
 ```bash
@@ -62,11 +57,11 @@ oppure:
 npm run dev
 ```
 
-L'applicazione sarà disponibile all'indirizzo http://localhost<br>
+L'applicazione sarà disponibile all'indirizzo http://localhost
 
 ## Test
 
-Per lanciare i test, digitare: 
+Per lanciare i test, digitare:
 
 ```bash
 vendor/bin/sail artisan test
