@@ -13,7 +13,11 @@ chmod +x tools/build-local-env.sh && ./tools/build-local-env.sh
 
 oppure seguire gli step illustrati di seguito:
 
-* Fare una copia del file `.env.example` nominandola `.env`
+* copiare il file `.env.example` in `.env`:
+
+```bash
+cp .env.example .env
+```
 
 * installare le dipendenze backend con:
 
