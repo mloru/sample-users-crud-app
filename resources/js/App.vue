@@ -220,13 +220,15 @@
                     }
                 }
 
-                if(this.editedUser.password !== this.editedUser.password_confirmation) {
+                if (this.editedUser.password !== this.editedUser.password_confirmation) {
                     this.errors.password_confirmation = `Le password non coincidono`;
                 }
 
                 if (Object.keys(this.errors).length > 0) {
                     return false;
                 }
+
+                return true;
             },
             validateEmail(email) {
                 const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
