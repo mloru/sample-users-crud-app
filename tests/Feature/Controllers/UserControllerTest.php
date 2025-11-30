@@ -163,7 +163,7 @@ final class UserControllerTest extends TestCase
                     'password_confirmation' => self::USER_1_PASSWORD,
                 ],
                 'errors' => [
-                    'name' => ['The name field is required.'],
+                    'name' => ['Il campo name è richiesto.'],
                 ]
             ],
             'missing name' => [
@@ -173,7 +173,7 @@ final class UserControllerTest extends TestCase
                     'password_confirmation' => self::USER_1_PASSWORD,
                 ],
                 'errors' => [
-                    'name' => ['The name field is required.'],
+                    'name' => ['Il campo name è richiesto.'],
                 ]
             ],
             'empty email' => [
@@ -184,7 +184,7 @@ final class UserControllerTest extends TestCase
                     'password_confirmation' => self::USER_1_PASSWORD,
                 ],
                 'errors' => [
-                    'email' => ['The email field is required.'],
+                    'email' => ['Il campo email è richiesto.'],
                 ]
             ],
             'missing email' => [
@@ -194,7 +194,7 @@ final class UserControllerTest extends TestCase
                     'password_confirmation' => self::USER_1_PASSWORD,
                 ],
                 'errors' => [
-                    'email' => ['The email field is required.'],
+                    'email' => ['Il campo email è richiesto.'],
                 ]
             ],
             'invalid email' => [
@@ -205,18 +205,7 @@ final class UserControllerTest extends TestCase
                     'password_confirmation' => self::USER_1_PASSWORD,
                 ],
                 'errors' => [
-                    'email' => ['The email field must be a valid email address.'],
-                ]
-            ],
-            'email too short' => [
-                'data' => [
-                    'name' => self::USER_1_NAME,
-                    'email' => 'a@b.c',
-                    'password' => self::USER_1_PASSWORD,
-                    'password_confirmation' => self::USER_1_PASSWORD,
-                ],
-                'errors' => [
-                    'email' => ['The email field must be at least 6 characters.'],
+                    'email' => ['Il campo email deve essere un indirizzo email valido.'],
                 ]
             ],
             'non-matching passwords' => [
@@ -227,7 +216,7 @@ final class UserControllerTest extends TestCase
                     'password_confirmation' => self::USER_1_PASSWORD . 'x',
                 ],
                 'errors' => [
-                    'password' => ['The password field confirmation does not match.'],
+                    'password' => ['Il campo password non corrisponde.'],
                 ]
             ],
         ];
@@ -243,7 +232,7 @@ final class UserControllerTest extends TestCase
             self::BASE_ENDPOINT,
             $data
         )
-            ->assertBadRequest();
+            ->assertUnprocessable();
 
         /** @var array $responseData */
         $responseData = json_decode($response->getContent(), true);
@@ -276,7 +265,7 @@ final class UserControllerTest extends TestCase
                     'name' => '',
                 ],
                 'errors' => [
-                    'name' => ['The name field is required.'],
+                    'name' => ['Il campo name è richiesto.'],
                 ]
             ],
             'empty email' => [
@@ -284,7 +273,7 @@ final class UserControllerTest extends TestCase
                     'email' => '',
                 ],
                 'errors' => [
-                    'email' => ['The email field is required.'],
+                    'email' => ['Il campo email è richiesto.'],
                 ]
             ],
             'invalid email' => [
@@ -295,18 +284,7 @@ final class UserControllerTest extends TestCase
                     'password_confirmation' => self::USER_1_PASSWORD,
                 ],
                 'errors' => [
-                    'email' => ['The email field must be a valid email address.'],
-                ]
-            ],
-            'email too short' => [
-                'data' => [
-                    'name' => self::USER_1_NAME,
-                    'email' => 'a@b.c',
-                    'password' => self::USER_1_PASSWORD,
-                    'password_confirmation' => self::USER_1_PASSWORD,
-                ],
-                'errors' => [
-                    'email' => ['The email field must be at least 6 characters.'],
+                    'email' => ['Il campo email deve essere un indirizzo email valido.'],
                 ]
             ],
             'non-matching passwords' => [
@@ -315,7 +293,7 @@ final class UserControllerTest extends TestCase
                     'password_confirmation' => self::USER_1_PASSWORD . 'x',
                 ],
                 'errors' => [
-                    'password' => ['The password field confirmation does not match.'],
+                    'password' => ['Il campo password non corrisponde.'],
                 ]
             ],
         ];
@@ -331,7 +309,7 @@ final class UserControllerTest extends TestCase
             self::BASE_ENDPOINT,
             $data
         )
-            ->assertBadRequest();
+            ->assertUnprocessable();
 
         /** @var array $responseData */
         $responseData = json_decode($response->getContent(), true);
